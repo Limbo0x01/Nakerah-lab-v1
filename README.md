@@ -17,10 +17,11 @@ Welcome in Nakerah-lab Local . :D  , You will be able to install all this labs b
  
  [+] Enter (8) Or anything To  { Exit  }
  
+ -----------------------------
  Have fun :D 
 
 Twitter :limbo0x01
-
+------------------------------
 Run : 
 
 sudo apt-get install python
