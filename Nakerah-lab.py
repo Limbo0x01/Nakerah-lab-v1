@@ -1,11 +1,12 @@
 #!/usr/bin/python
 import os
 import time
+import sys
 f = open('banner.txt', 'r')
 file_contents = f.read()
-print("file_contents")
+print(file_contents)
 f.close()
-PHP_V=os.environ['php_v']
+PHP_V=sys.argv[1]
 hostname = 'localhost'
 username = 'root'
 password = ''
@@ -278,7 +279,7 @@ os.system("clear")
 print("\033[0;32;40m ")
 f = open('banner.txt', 'r')
 file_contents = f.read()
-print("file_contents")
+print(file_contents)
 f.close()
 
 print("--------------------------------------------------------------")
