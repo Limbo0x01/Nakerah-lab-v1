@@ -26,6 +26,6 @@ Run :
 
 sudo apt-get install python
 
-Nakerah-lab-v1
+cd Nakerah-lab-v1
 
 sudo python Nakerah-lab.py
