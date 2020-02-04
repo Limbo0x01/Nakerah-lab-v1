@@ -24,5 +24,7 @@ Twitter :limbo0x01
 Run : 
 
 sudo apt-get install python
+
 Nakerah-lab-v1
+
 sudo python Nakerah-lab.py
