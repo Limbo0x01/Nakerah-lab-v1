@@ -13,8 +13,6 @@ database = 'mysql'
 
 print "Step 1: Install apache"
 os.system("sudo apt-get install unzip")
-print "[+] Update your local package : "
-os.system("sudo apt update")
 print "[+] Install the apache2 package:"
 os.system("sudo apt-get install apache2 -y")
 print "[+] Enable its rewrite module, and restart the service :"
