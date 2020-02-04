@@ -10,16 +10,16 @@ And just run the script , chose what ever u want  from [bWAP P,xvwa ,dvwa ,mutil
 Run : 
 
 apt-get install git 
-
-git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
-
-sudo apt-get install python
-
-cd Nakerah-lab-v1
-
-sudo python Nakerah-lab.py
-
 ------------------------------
+git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
+------------------------------
+sudo apt-get install python
+------------------------------
+cd Nakerah-lab-v1
+------------------------------
+sudo python Nakerah-lab.py
+------------------------------
+
 Contact 
 Twitter : limbo0x01 
 
