@@ -61,12 +61,15 @@ os.system("sudo apt-get install php7.3-curl php7.3-mbstring php7.3-xml -y")
 os.system("sudo apt-get install php php-mysqli php-gd libapache2-mod-php -y")
 print("-------------------------------------------------------")
 print("Step 7: Install python")
-os.system("sudo apt-get install python -y")
-os.system("sudo apt-get install python-pip -y")
+os.system("sudo apt-get install python3 -y")
+os.system("sudo apt-get install python3-pip -y")
 
 os.system("sudo apt-get install python-mysqldb")
-
 os.system("pip3 install mysql-connector-python")
+os.system("pip install pymysql")
+os.system("sudo apt-get install libmysqlclient-dev")
+os.system("sudo -H pip3 install mysqlclient")
+os.system("sudo apt-get install python3-dev libmysqlclient-dev")
 
 #os.system("pip install MySQL-python")
 
