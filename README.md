@@ -9,7 +9,7 @@ And just run the script , chose what ever u want  from [bWAP P,xvwa ,dvwa ,mutil
 ------------------------------
 Run : 
 
-apt-get install git 
+sudo apt-get install git 
 ------------------------------
 git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
 ------------------------------
@@ -17,7 +17,7 @@ sudo apt-get install python
 ------------------------------
 cd Nakerah-lab-v1
 ------------------------------
-chmod +x setup.sh
+sudo chmod +x setup.sh
 ------------------------------
 sudo setup.sh
 ------------------------------
