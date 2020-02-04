@@ -11,4 +11,4 @@ export PHP_limbo=$(php --version | grep -i 'PHP'|cut -d ')' -f 1 | head -1 | cut
 source ~/.bashrc
 echo $PHP_limbo
 
-sudo python Nakerah-lab.py $PHP_limbo
+sudo python3 Nakerah-lab.py $PHP_limbo
