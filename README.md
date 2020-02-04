@@ -1,5 +1,5 @@
 # Nakerah-lab-v1
-Welcome in Nakerah-lab Local . :D  , You will be able to install all this labs by oen click .
+Welcome in Nakerah-lab Local . :D  , You will be able to install all this labs by one click .
  
  [+] Enter (1) To install { bWAPP      }
  
