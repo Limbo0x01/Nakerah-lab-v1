@@ -17,7 +17,9 @@ sudo apt-get install python
 ------------------------------
 cd Nakerah-lab-v1
 ------------------------------
-sudo python Nakerah-lab.py
+chmod +x setup.sh
+------------------------------
+sudo setup.sh
 ------------------------------
 ############################
 ## Contact               ##             
