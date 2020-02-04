@@ -13,8 +13,6 @@ sudo apt-get install git
 ------------------------------
 git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
 ------------------------------
-sudo apt-get install python -y
-------------------------------
 cd Nakerah-lab-v1
 ------------------------------
 sudo chmod +x setup.sh
