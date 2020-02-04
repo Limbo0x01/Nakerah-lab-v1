@@ -45,6 +45,14 @@ print("-------------------------------------------------------")
 print("Step 5: Install MySQL")
 os.system("sudo apt-get install mysql-server php-mysql -y")
 print("-------------------------------------------------------")
+print("This steps for Kali linux")
+os.system("sudo ls -lart /var/run/my")
+os.system("sudo mkdir /var/run/mysqld")
+os.system("sudo touch /var/run/mysqld/.sock")
+os.system("sudo chown -R mysql /var/run/mysqld/")
+os.system("sudo /etc/init.d/mysql restart")
+
+
 
 print("Step 6: Install php")
 # for dvwa
