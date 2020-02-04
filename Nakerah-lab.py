@@ -1,11 +1,14 @@
 #!/usr/bin/python
 import os
 import time
+import sys
+
 f = open('banner.txt', 'r')
 file_contents = f.read()
 print(file_contents)
 f.close()
-PHP_V=os.environ['php_v']
+PHP_V=sys.argv[1]
+
 hostname = 'localhost'
 username = 'root'
 password = ''
@@ -47,9 +50,9 @@ print "-------------------------------------------------------"
 
 print "Step 6: Install php"
 # for dvwa
-os.system("sudo apt-get install php7.2-curl php7.2-mbstring php7.2-xml -y")
-os.system("sudo apt-get install php7.3-curl php7.3-mbstring php7.3-xml -y")
-os.system("sudo apt-get install php php-mysqli php-gd libapache2-mod-php -y")
+#os.system("sudo apt-get install php7.2-curl php7.2-mbstring php7.2-xml -y")
+#os.system("sudo apt-get install php7.3-curl php7.3-mbstring php7.3-xml -y")
+#os.system("sudo apt-get install php php-mysqli php-gd libapache2-mod-php -y")
 print "-------------------------------------------------------"
 print "Step 7: Install python"
 os.system("sudo apt-get install python -y")
