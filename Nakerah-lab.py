@@ -5,7 +5,7 @@ f = open('banner.txt', 'r')
 file_contents = f.read()
 print(file_contents)
 f.close()
-
+PHP_V=os.environ['php_v']
 hostname = 'localhost'
 username = 'root'
 password = ''
@@ -13,6 +13,8 @@ database = 'mysql'
 
 print "Step 1: Install apache"
 os.system("sudo apt-get install unzip")
+#print "[+] Update your local package : "
+#os.system("sudo apt update")
 print "[+] Install the apache2 package:"
 os.system("sudo apt-get install apache2 -y")
 print "[+] Enable its rewrite module, and restart the service :"
@@ -46,6 +48,7 @@ print "-------------------------------------------------------"
 print "Step 6: Install php"
 # for dvwa
 os.system("sudo apt-get install php7.2-curl php7.2-mbstring php7.2-xml -y")
+os.system("sudo apt-get install php7.3-curl php7.3-mbstring php7.3-xml -y")
 os.system("sudo apt-get install php php-mysqli php-gd libapache2-mod-php -y")
 print "-------------------------------------------------------"
 print "Step 7: Install python"
@@ -61,14 +64,14 @@ os.system("pip install mysql-connector-python")
 print "-------------------------------------------------------"
 # allow url include for dvwa
 # Read in the file
-with open('/etc/php/7.2/apache2/php.ini', 'r') as file:
+with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'r') as file:
     filedata = file.read()
 
 # Replace the target string
 filedata = filedata.replace('allow_url_include = Off', 'allow_url_include = On')
 
 # Write the file out again
-with open('/etc/php/7.2/apache2/php.ini', 'w') as file:
+with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'w') as file:
     file.write(filedata)
 time.sleep(0.5)
 print "Restart Apache2..."
@@ -283,4 +286,3 @@ print "Hello Friend ... "
 print "Now u can using yor lab ... "
 print "Just Open your Browser IP Machine = >>  : "
 os.system("IP=$(ifconfig|grep -i inet | cut -d ' ' -f 10 | head -1);echo [--] Http://$IP/index.html")
-
