@@ -58,7 +58,7 @@ os.system("sudo apt-get install python-pip -y")
 
 os.system("sudo apt-get install python-mysqldb")
 
-os.system("pip install mysql-connector-python")
+os.system("pip3 install mysql-connector-python")
 
 #os.system("pip install MySQL-python")
 
