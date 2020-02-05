@@ -64,12 +64,12 @@ print("Step 7: Install python")
 os.system("sudo apt-get install python3 -y")
 os.system("sudo apt-get install python3-pip -y")
 
-os.system("sudo apt-get install python-mysqldb")
-os.system("pip3 install mysql-connector-python")
-os.system("pip install pymysql")
-os.system("sudo apt-get install libmysqlclient-dev")
-os.system("sudo -H pip3 install mysqlclient")
-os.system("sudo apt-get install python3-dev libmysqlclient-dev")
+os.system("sudo apt-get install python-mysqldb -y")
+os.system("pip3 install mysql-connector-python -y")
+os.system("pip install pymysql -y")
+os.system("sudo apt-get install libmysqlclient-dev -y")
+os.system("sudo -H pip3 install mysqlclient -y")
+os.system("sudo apt-get install python3-dev libmysqlclient-dev -y")
 
 #os.system("pip install MySQL-python")
 
