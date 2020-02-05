@@ -11,7 +11,7 @@ Run :
 
 sudo apt-get install git 
 ------------------------------
-git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
+sudo git clone https://github.com/0xL1mb0/Nakerah-lab-v1.git
 ------------------------------
 cd Nakerah-lab-v1
 ------------------------------
