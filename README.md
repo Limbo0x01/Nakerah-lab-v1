@@ -53,8 +53,6 @@ sudo chmod +x setup.sh
 
 ```
 
-
-if there are anything worng with open the labs , remove php 7.3 and install php 7.2 and every thing will be okay.
 ------------------------------
 
 The login details
