@@ -286,6 +286,7 @@ while x != 0:
     else:
         break
 print(" Goodbye Friend !!")
+os.system("sudo service apache2 restart")
 os.system("clear")
 print("\033[0;32;40m ")
 f = open('banner.txt', 'r')
