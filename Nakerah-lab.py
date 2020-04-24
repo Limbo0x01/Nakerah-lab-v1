@@ -64,6 +64,9 @@ print("Step 7: Install python")
 os.system("sudo apt-get install python3 -y")
 os.system("sudo apt-get install python3-pip -y")
 
+os.system("sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py")
+os.system("sudo python get-pip.py")
+
 os.system("sudo apt-get install python-mysqldb -y")
 os.system("pip3 install mysql-connector-python -y")
 os.system("pip install pymysql -y")
