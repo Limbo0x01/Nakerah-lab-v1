@@ -48,7 +48,7 @@ cd Nakerah-lab-v1
 
 sudo chmod +x setup.sh
 
-./setup.sh
+sudo ./setup.sh
 
 
 ```
