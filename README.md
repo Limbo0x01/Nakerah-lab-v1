@@ -10,6 +10,7 @@ Cross-Origin Request Sharing "CORS" Vuln automate .
 
 #RUN
 ./cors.py sub.txt
+-----------------
 ./cors.sh sub.txt
 
 ############################
