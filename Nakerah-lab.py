@@ -92,6 +92,20 @@ filedata = filedata.replace('allow_url_include = Off', 'allow_url_include = On')
 with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'w') as file:
     file.write(filedata)
 time.sleep(0.5)
+print("--------------------------------------------------------")
+# allow url include for dvwa
+# Read in the file
+with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'r') as file:
+    filedata = file.read()
+
+# Replace the target string
+filedata = filedata.replace('display_errors = Off', 'display_errors = On')
+
+# Write the file out again
+with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'w') as file:
+    file.write(filedata)
+time.sleep(0.5)
+
 print("Restart Apache2...")
 os.system("sudo service apache2 restart")
 print("-------------------------------------------------------")
