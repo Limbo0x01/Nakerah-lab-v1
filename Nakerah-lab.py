@@ -39,7 +39,7 @@ os.system("sudo systemctl reload apache2 ")
 #-----------------------------------------------------------#
 print("-------------------------------------------------------")
 
-'''
+
 print("Step 5: Install MySQL")
 os.system("sudo apt-get install mysql-server php-mysql -y")
 print("-------------------------------------------------------")
@@ -49,7 +49,6 @@ os.system("sudo mkdir /var/run/mysqld")
 os.system("sudo touch /var/run/mysqld/.sock")
 os.system("sudo chown -R mysql /var/run/mysqld/")
 os.system("sudo /etc/init.d/mysql restart")
-'''
 
 
 print("Step 6: Install php")
@@ -62,9 +61,9 @@ print("Step 7: Install python")
 os.system("sudo apt-get install python3 -y")
 os.system("sudo apt-get install python3-pip -y")
 
-#os.system("sudo apt-get install python3-mysqldb -y")
-#os.system("pip3 install mysql-connector-python -y")
-#os.system("sudo pip install MySQL-python -y")
+os.system("sudo apt-get install python3-mysqldb -y")
+os.system("pip3 install mysql-connector-python -y")
+os.system("sudo pip install MySQL-python -y")
 os.system("sudo apt install python3-pip")
 
 os.system("sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip2.py")
@@ -78,9 +77,9 @@ os.system("python -m pip install --upgrade 'pip < 21.0'")
 os.system("sudo apt-get install python-dev default-libmysqlclient-dev -y")
 
 
-#os.system("sudo apt-get install python3-mysqldb -y")
-#os.system("pip3 install mysql-connector-python -y")
-#os.system("sudo pip install MySQL-python -y")
+os.system("sudo apt-get install python3-mysqldb -y")
+os.system("pip3 install mysql-connector-python -y")
+os.system("sudo pip install MySQL-python -y")
 
 os.system("sudo apt install libmariadb3 libmariadb-dev -y")
 os.system("sudo apt install mariadb-server -y")
@@ -97,9 +96,10 @@ os.system("sudo apt-get install libmysqlclient-dev -y")
 os.system("sudo -H pip3 install mysqlclient -y")
 os.system("sudo apt-get install python3-dev libmysqlclient-dev -y")
 
-#os.system("pip install MySQL-python")
+os.system("pip install MySQL-python")
 
 print("-------------------------------------------------------")
+
 # allow url include for dvwa
 # Read in the file
 with open('/etc/php/'+PHP_V+'/apache2/php.ini', 'r') as file:
@@ -154,9 +154,10 @@ time.sleep(0.5)
 os.system("sudo mv index.html /var/www/html/index.html")
 time.sleep(0.5)
 os.system("sudo mv 873.jpg  c-logo-hd.png  /var/www/html")
-import mariadb
+
 
 try:
+	import mariadb
     conn = mariadb.connect(
         user="root",
         password="",
@@ -169,7 +170,7 @@ try:
     print("Creating databases....")
     cursor = conn.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS  dvwa;")
-    cursor.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+    cursor.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
     cursor.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
     cursor.execute("flush privileges;")
@@ -178,14 +179,14 @@ try:
     
     # data sql;
     cursor.execute("CREATE DATABASE IF NOT EXISTS  xvwa;")
-    cursor.execute("CREATE USER IF NOT EXISTS  'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+    cursor.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
     cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
     cursor.execute("flush privileges;")
     time.sleep(0.5)
     print("SQL fninshed")
     # data bWAPP;
-    cursor.execute("CREATE USER IF NOT EXISTS  'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+    cursor.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
     cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
     cursor.execute("flush privileges;")
@@ -194,7 +195,7 @@ try:
     # data sql;
     cursor.execute("CREATE DATABASE IF NOT EXISTS  secursority;")
     cursor.execute("CREATE DATABASE IF NOT EXISTS  challenges;")
-    cursor.execute("CREATE USER IF NOT EXISTS  'sql'@'localhost' IDENTIFIED BY 'sql';")
+    cursor.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
     cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
     cursor.execute("flush privileges;")
@@ -202,7 +203,7 @@ try:
     print("secursority & challenges fninshed")
     # data mutillidae;
     cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
-    cursor.execute("CREATE USER IF NOT EXISTS  'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+    cursor.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
     cursor.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
     cursor.execute("use mysql;")
@@ -218,6 +219,64 @@ try:
     conn.close()
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
+	print("Step 9: Create databases ")
+
+	hostname = 'localhost'
+	username = 'root'
+	password = ''
+	database = 'mysql'
+
+	import MySQLdb
+	# Simple routine to run a query on a database and print the results:
+	def doQuery(conn):
+	    cur = conn.cursor()
+	    # data dvwa;
+	    cur.execute("create database dvwa;")
+	    cur.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+	    cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
+	    cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    # data sql;
+	    cur.execute("create database xvwa;")
+	    cur.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
+	    cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    # data bWAPP;
+	    cur.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
+	    cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    # data sql;
+	    cur.execute("create database security;")
+	    cur.execute("create database challenges;")
+	    cur.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
+	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
+	    cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    # data mutillidae;
+	    cur.execute("create database mutillidae;")
+	    cur.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+	    cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
+	    cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
+	    cur.execute("use mysql;")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
+	    cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+	    cur.execute("flush privileges;")
+	    time.sleep(0.5)
+	    for firstname, lastname in cur.fetchall():
+	        print(firstname, lastname)
+	print("Using MySQLdb ... ")
+	myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
+	doQuery(myConnection)
+	myConnection.close()
+	print("Creating databases done ...... ")
 #    sys.exit(1)
 
 
