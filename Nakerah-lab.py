@@ -158,72 +158,7 @@ os.system("sudo mv 873.jpg  c-logo-hd.png  /var/www/html")
 
 
 try:
-    import MySQLdb
-    print("Step 9: Create mysql databases ")
-
-    hostname = 'localhost'
-    username = 'root'
-    password = ''
-    database = 'mysql'
-
-
-    # Simple routine to run a query on a database and print the results:
-    def doQuery(conn):
-        cur = conn.cursor()
-        # data dvwa;
-        print("Step 9.1: Creating DVWA database ")
-        cur.execute("CREATE DATABASE IF NOT EXISTS dvwa;")
-        cur.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
-        cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
-        cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        # data sql;
-        print("Step 9.2: Creating XVWA database ")
-        cur.execute("CREATE DATABASE IF NOT EXISTS xvwa;")
-        cur.execute("CREATE USER IF NOT EXISTS 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
-        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
-        cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        # data bWAPP;
-        print("Step 9.3: Creating BWAPP database ")
-        cur.execute("CREATE USER IF NOT EXISTS 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
-        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
-        cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        # data sql;
-        print("Step 9.4: Creating security and challenges databases ")
-        cur.execute("CREATE DATABASE IF NOT EXISTS security;")
-        cur.execute("CREATE DATABASE IF NOT EXISTS challenges;")
-        cur.execute("CREATE USER IF NOT EXISTS 'sql'@'localhost' IDENTIFIED BY 'sql';")
-        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
-        cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        # data mutillidae;
-        print("Step 9.3: Creating mutillidae database ")
-        cur.execute("CREATE DATABASE IF NOT EXISTS mutillidae;")
-        cur.execute("CREATE USER IF NOT EXISTS 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
-        cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
-        cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
-        cur.execute("use mysql;")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
-        cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
-        cur.execute("flush privileges;")
-        time.sleep(0.5)
-        for firstname, lastname in cur.fetchall():
-            print(firstname, lastname)
-    print("Using MySQLdb ... ")
-    myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
-    doQuery(myConnection)
-    myConnection.close()
-    print("Creating databases done ...... ")
-except:
-    print("Step 10: Create MariaDB databases ")
+    print("Step 9: Create MariaDB databases ")
     import mariadb
     time.sleep(0.5)
     conn = mariadb.connect(
@@ -271,7 +206,7 @@ except:
     cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
     cursor.execute("flush privileges;")
     time.sleep(0.5)
-    print("secursority & challenges fninshed")
+    print("10 secursority & challenges fninshed")
     # data mutillidae;
     print("Step 9.5: Creating mutillidae  database")
     cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
@@ -290,6 +225,75 @@ except:
     print("Every thing is going well...")
     conn.close()
     print("Hello")
+
+except:
+    import MySQLdb
+    print("Step 10: Create mysql databases ")
+
+    hostname = 'localhost'
+    username = 'root'
+    password = ''
+    database = 'mysql'
+
+
+    # Simple routine to run a query on a database and print the results:
+    def doQuery(conn):
+        cur = conn.cursor()
+        # data dvwa;
+        print("Step 9.1: Creating DVWA database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS dvwa;")
+        cur.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+        cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data sql;
+        print("Step 9.2: Creating XVWA database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS xvwa;")
+        cur.execute("CREATE USER IF NOT EXISTS 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data bWAPP;
+        print("Step 9.3: Creating BWAPP database ")
+        cur.execute("CREATE USER IF NOT EXISTS 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data sql;
+        print("Step 9.4: Creating security and challenges databases ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS security;")
+        cur.execute("CREATE DATABASE IF NOT EXISTS challenges;")
+        cur.execute("CREATE USER IF NOT EXISTS 'sql'@'localhost' IDENTIFIED BY 'sql';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data mutillidae;
+        print("Step 9.5: Creating mutillidae database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS mutillidae;")
+        cur.execute("CREATE USER IF NOT EXISTS 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+        cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
+        cur.execute("use mysql;")
+        cur.execute("flush privileges;")
+        print("mutillidae part 1")
+        time.sleep(0.5)
+        cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
+        cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        print("mutillidae part 2")
+        for firstname, lastname in cur.fetchall():
+            print(firstname, lastname)
+    print("Using MySQLdb ... ")
+    myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
+    doQuery(myConnection)
+    myConnection.close()
+    print("Creating databases done ...... ")
+
 
 os.system("clear")
 f = open('banner.txt', 'r')
