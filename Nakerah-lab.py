@@ -157,7 +157,7 @@ os.system("sudo mv 873.jpg  c-logo-hd.png  /var/www/html")
 
 
 try:
-	import mariadb
+    import mariadb
     conn = mariadb.connect(
         user="root",
         password="",
@@ -218,65 +218,66 @@ try:
     print("Every thing is going well...")
     conn.close()
 except mariadb.Error as e:
+    import MySQLdb
     print(f"Error connecting to MariaDB Platform: {e}")
-	print("Step 9: Create databases ")
+    print("Step 9: Create databases ")
 
-	hostname = 'localhost'
-	username = 'root'
-	password = ''
-	database = 'mysql'
+    hostname = 'localhost'
+    username = 'root'
+    password = ''
+    database = 'mysql'
 
-	import MySQLdb
-	# Simple routine to run a query on a database and print the results:
-	def doQuery(conn):
-	    cur = conn.cursor()
-	    # data dvwa;
-	    cur.execute("create database dvwa;")
-	    cur.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
-	    cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
-	    cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    # data sql;
-	    cur.execute("create database xvwa;")
-	    cur.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
-	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
-	    cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    # data bWAPP;
-	    cur.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
-	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
-	    cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    # data sql;
-	    cur.execute("create database security;")
-	    cur.execute("create database challenges;")
-	    cur.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
-	    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
-	    cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    # data mutillidae;
-	    cur.execute("create database mutillidae;")
-	    cur.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
-	    cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
-	    cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
-	    cur.execute("use mysql;")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
-	    cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
-	    cur.execute("flush privileges;")
-	    time.sleep(0.5)
-	    for firstname, lastname in cur.fetchall():
-	        print(firstname, lastname)
-	print("Using MySQLdb ... ")
-	myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
-	doQuery(myConnection)
-	myConnection.close()
-	print("Creating databases done ...... ")
+
+    # Simple routine to run a query on a database and print the results:
+    def doQuery(conn):
+        cur = conn.cursor()
+        # data dvwa;
+        cur.execute("create database dvwa;")
+        cur.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+        cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data sql;
+        cur.execute("create database xvwa;")
+        cur.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data bWAPP;
+        cur.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data sql;
+        cur.execute("create database security;")
+        cur.execute("create database challenges;")
+        cur.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
+        cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        # data mutillidae;
+        cur.execute("create database mutillidae;")
+        cur.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+        cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
+        cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
+        cur.execute("use mysql;")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
+        cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+        cur.execute("flush privileges;")
+        time.sleep(0.5)
+        for firstname, lastname in cur.fetchall():
+            print(firstname, lastname)
+    print("Using MySQLdb ... ")
+    myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
+    doQuery(myConnection)
+    myConnection.close()
+    print("Creating databases done ...... ")
 #    sys.exit(1)
 
 
