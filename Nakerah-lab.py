@@ -88,7 +88,7 @@ os.system("sudo service mariadb start")
 os.system("pip3 install mariadb")
 ###########mutillidae 
 
-os.system("sudo apt update")
+os.system("sudo apt update -y")
 os.system("sudo apt install php-xml php-fpm libapache2-mod-php php-mysql php-gd php-imap php-mysql php-curl php-mbstring -y")
 os.system("sudo a2enmod proxy_fcgi setenvif")
 os.system("sudo systemctl restart apache2")
