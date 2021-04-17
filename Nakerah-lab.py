@@ -1,16 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
-import time
 import sys
+import time
 f = open('banner.txt', 'r')
 file_contents = f.read()
 print(file_contents)
 f.close()
 PHP_V=sys.argv[1]
-hostname = 'localhost'
-username = 'root'
-password = ''
-database = 'mysql'
+
 
 print("Step 1: Install apache")
 os.system("sudo apt-get install unzip")
@@ -42,6 +39,7 @@ os.system("sudo systemctl reload apache2 ")
 #-----------------------------------------------------------#
 print("-------------------------------------------------------")
 
+'''
 print("Step 5: Install MySQL")
 os.system("sudo apt-get install mysql-server php-mysql -y")
 print("-------------------------------------------------------")
@@ -51,7 +49,7 @@ os.system("sudo mkdir /var/run/mysqld")
 os.system("sudo touch /var/run/mysqld/.sock")
 os.system("sudo chown -R mysql /var/run/mysqld/")
 os.system("sudo /etc/init.d/mysql restart")
-
+'''
 
 
 print("Step 6: Install php")
@@ -64,8 +62,30 @@ print("Step 7: Install python")
 os.system("sudo apt-get install python3 -y")
 os.system("sudo apt-get install python3-pip -y")
 
-os.system("sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py")
-os.system("sudo python get-pip.py")
+#os.system("sudo apt-get install python3-mysqldb -y")
+#os.system("pip3 install mysql-connector-python -y")
+#os.system("sudo pip install MySQL-python -y")
+os.system("sudo apt install python3-pip")
+
+os.system("sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip2.py")
+os.system("sudo python get-pip2.py")
+
+
+
+os.system("curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py")
+os.system("python get-pip.py")
+os.system("python -m pip install --upgrade 'pip < 21.0'")
+os.system("sudo apt-get install python-dev default-libmysqlclient-dev -y")
+
+
+#os.system("sudo apt-get install python3-mysqldb -y")
+#os.system("pip3 install mysql-connector-python -y")
+#os.system("sudo pip install MySQL-python -y")
+
+os.system("sudo apt install libmariadb3 libmariadb-dev -y")
+os.system("sudo apt install mariadb-server -y")
+os.system("sudo service mariadb start")
+os.system("pip3 install mariadb")
 
 os.system("sudo apt-get install python-mysqldb -y")
 os.system("pip3 install mysql-connector-python -y")
@@ -126,20 +146,6 @@ os.system("sudo unzip mutillidae2.zip")
 time.sleep(0.5)
 os.system("sudo tar -xzvf xvwa.tar.gz")
 
-# mov them
-'''
-os.system("sudo mv bWAPP /var/www/html/")
-time.sleep(0.5)
-os.system("sudo mv xvwa /var/www/html/")
-time.sleep(0.5)
-os.system("sudo mv dvwa /var/www/html/")
-time.sleep(0.5)
-os.system("sudo mv mutillidae /var/www/html/")
-time.sleep(0.5)
-os.system("sudo mv hackademic /var/www/html/")
-time.sleep(0.5)
-os.system("sudo mv sqli-labs /var/www/html/")
-'''
 
 os.system("sudo rm -r *.zip  *.gz")
 time.sleep(0.5)
@@ -148,74 +154,71 @@ time.sleep(0.5)
 os.system("sudo mv index.html /var/www/html/index.html")
 time.sleep(0.5)
 os.system("sudo mv 873.jpg  c-logo-hd.png  /var/www/html")
+import mariadb
 
+try:
+    conn = mariadb.connect(
+        user="root",
+        password="",
+        host="localhost",
+        port=3306,
+        database="mysql"
 
-'''
-print("Step 8: Install the vulnerable servers")
-os.system("sudo chmod -R 777 /var/www/html/dvwa/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt")
-os.system("sudo chmod -R 777 /var/www/html/dvwa/hackable/uploads")
-os.system("sudo chmod -R 777 /var/www/html/dvwa/config")
-os.system("sudo chmod 777 /var/www/html/bWAPP/passwords/")
-os.system("sudo chmod 777 /var/www/html/bWAPP/images/")
-os.system("sudo chmod 777 /var/www/html/bWAPP/documents/")
-#os.system("sudo mkdir /var/www/html/bWAPP/logs/")
-os.system("sudo chmod 777 /var/www/html/bWAPP/logs/")
-os.system("sudo chown -R www-data:www-data /var/www/html/bWAPP/")
-'''
+    )
 
-print("Step 9: Create databases ")
-import MySQLdb
-# Simple routine to run a query on a database and print the results:
-def doQuery(conn):
-    cur = conn.cursor()
-    # data dvwa;
-    cur.execute("create database dvwa;")
-    cur.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
-    cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
-    cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
-    cur.execute("flush privileges;")
+    print("Creating databases....")
+    cursor = conn.cursor()
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  dvwa;")
+    cursor.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+    cursor.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
+    cursor.execute("flush privileges;")
     time.sleep(0.5)
+    print("dvwa fninshed")
+    
     # data sql;
-    cur.execute("create database xvwa;")
-    cur.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
-    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
-    cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
-    cur.execute("flush privileges;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  xvwa;")
+    cursor.execute("CREATE USER IF NOT EXISTS  'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
+    cursor.execute("flush privileges;")
     time.sleep(0.5)
+    print("SQL fninshed")
     # data bWAPP;
-    cur.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
-    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
-    cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
-    cur.execute("flush privileges;")
+    cursor.execute("CREATE USER IF NOT EXISTS  'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
+    cursor.execute("flush privileges;")
     time.sleep(0.5)
+    print("bWAPP fninshed")
     # data sql;
-    cur.execute("create database security;")
-    cur.execute("create database challenges;")
-    cur.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
-    cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
-    cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
-    cur.execute("flush privileges;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  secursority;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  challenges;")
+    cursor.execute("CREATE USER IF NOT EXISTS  'sql'@'localhost' IDENTIFIED BY 'sql';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
+    cursor.execute("flush privileges;")
     time.sleep(0.5)
+    print("secursority & challenges fninshed")
     # data mutillidae;
-    cur.execute("create database mutillidae;")
-    cur.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
-    cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
-    cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
-    cur.execute("use mysql;")
-    cur.execute("flush privileges;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
+    cursor.execute("CREATE USER IF NOT EXISTS  'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+    cursor.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
+    cursor.execute("use mysql;")
+    cursor.execute("flush privileges;")
     time.sleep(0.5)
-    cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
-    cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
-    cur.execute("flush privileges;")
-    time.sleep(0.5)
-    for firstname, lastname in cur.fetchall():
-        print(firstname, lastname)
-print("Using MySQLdb ... ")
-myConnection = MySQLdb.connect(host=hostname, user=username, passwd=password, db=database)
-doQuery(myConnection)
-myConnection.close()
-print("Creating databases done ...... ")
 
+    cursor.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
+    cursor.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    print("mutillidae fninshed")
+    print("Every thing is going well...")
+    conn.close()
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB Platform: {e}")
+#    sys.exit(1)
 
 
 os.system("clear")
