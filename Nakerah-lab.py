@@ -2,6 +2,7 @@
 import os
 import sys
 import time
+
 f = open('banner.txt', 'r')
 file_contents = f.read()
 print(file_contents)
@@ -20,7 +21,7 @@ os.system("sudo a2enmod rewrite && systemctl restart apache2")
 print("[+] Step 2 - Adjusting the Firewall ")
 os.system("sudo ufw app list")
 os.system("sudo ufw allow 'Apache'")
-os.system("sudo ufw status'")
+os.system("sudo ufw status")
 #-----------------------------------------------------------#
 print("-------------------------------------------------------")
 print("[+] Step 3 - Checking your Web Server")
@@ -157,70 +158,8 @@ os.system("sudo mv 873.jpg  c-logo-hd.png  /var/www/html")
 
 
 try:
-    import mariadb
-    conn = mariadb.connect(
-        user="root",
-        password="",
-        host="localhost",
-        port=3306,
-        database="mysql"
-
-    )
-
-    print("Creating databases....")
-    cursor = conn.cursor()
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  dvwa;")
-    cursor.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
-    cursor.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
-    cursor.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-    print("dvwa fninshed")
-    
-    # data sql;
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  xvwa;")
-    cursor.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
-    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
-    cursor.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-    print("SQL fninshed")
-    # data bWAPP;
-    cursor.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
-    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
-    cursor.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-    print("bWAPP fninshed")
-    # data sql;
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  secursority;")
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  challenges;")
-    cursor.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
-    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
-    cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-    print("secursority & challenges fninshed")
-    # data mutillidae;
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
-    cursor.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
-    cursor.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
-    cursor.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
-    cursor.execute("use mysql;")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-
-    cursor.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
-    cursor.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
-    cursor.execute("flush privileges;")
-    time.sleep(0.5)
-    print("mutillidae fninshed")
-    print("Every thing is going well...")
-    conn.close()
-except mariadb.Error as e:
     import MySQLdb
-    print(f"Error connecting to MariaDB Platform: {e}")
-    print("Step 9: Create databases ")
+    print("Step 9: Create mysql databases ")
 
     hostname = 'localhost'
     username = 'root'
@@ -232,36 +171,41 @@ except mariadb.Error as e:
     def doQuery(conn):
         cur = conn.cursor()
         # data dvwa;
-        cur.execute("create database dvwa;")
-        cur.execute("CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+        print("Step 9.1: Creating DVWA database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS dvwa;")
+        cur.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
         cur.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
         cur.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
         cur.execute("flush privileges;")
         time.sleep(0.5)
         # data sql;
-        cur.execute("create database xvwa;")
-        cur.execute("CREATE USER 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+        print("Step 9.2: Creating XVWA database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS xvwa;")
+        cur.execute("CREATE USER IF NOT EXISTS 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
         cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
         cur.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
         cur.execute("flush privileges;")
         time.sleep(0.5)
         # data bWAPP;
-        cur.execute("CREATE USER 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+        print("Step 9.3: Creating BWAPP database ")
+        cur.execute("CREATE USER IF NOT EXISTS 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
         cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
         cur.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
         cur.execute("flush privileges;")
         time.sleep(0.5)
         # data sql;
-        cur.execute("create database security;")
-        cur.execute("create database challenges;")
-        cur.execute("CREATE USER 'sql'@'localhost' IDENTIFIED BY 'sql';")
+        print("Step 9.4: Creating security and challenges databases ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS security;")
+        cur.execute("CREATE DATABASE IF NOT EXISTS challenges;")
+        cur.execute("CREATE USER IF NOT EXISTS 'sql'@'localhost' IDENTIFIED BY 'sql';")
         cur.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
         cur.execute("SHOW GRANTS FOR 'sql'@'localhost';")
         cur.execute("flush privileges;")
         time.sleep(0.5)
         # data mutillidae;
-        cur.execute("create database mutillidae;")
-        cur.execute("CREATE USER 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+        print("Step 9.3: Creating mutillidae database ")
+        cur.execute("CREATE DATABASE IF NOT EXISTS mutillidae;")
+        cur.execute("CREATE USER IF NOT EXISTS 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
         cur.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
         cur.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
         cur.execute("use mysql;")
@@ -278,8 +222,74 @@ except mariadb.Error as e:
     doQuery(myConnection)
     myConnection.close()
     print("Creating databases done ...... ")
-#    sys.exit(1)
+except:
+    print("Step 10: Create MariaDB databases ")
+    import mariadb
+    time.sleep(0.5)
+    conn = mariadb.connect(
+        user="root",
+        password="",
+        host="localhost",
+        port=3306,
+        database="mysql"
 
+    )
+
+    print("Creating databases....")
+    cursor = conn.cursor()
+    print("Step 9.1: Creating dvwa database ")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  dvwa;")
+    cursor.execute("CREATE USER IF NOT EXISTS 'dvwa'@'localhost' IDENTIFIED BY 'dvwa';")
+    cursor.execute("GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'dvwa'@'localhost';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    print("dvwa fninshed")
+    
+    # data xvwa;
+    print("Step 9.2: Creating xvwa database ")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  xvwa;")
+    cursor.execute("CREATE USER IF NOT EXISTS 'xvwa'@'localhost' IDENTIFIED BY 'xvwa';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'xvwa'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'xvwa'@'localhost';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    print("SQL fninshed")
+    # data bWAPP;
+    print("Step 9.3: Creating bWAPP database ")
+    cursor.execute("CREATE USER IF NOT EXISTS 'bWAPP'@'localhost' IDENTIFIED BY 'bWAPP';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'bWAPP'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'bWAPP'@'localhost';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    # data sql;
+    print("Step 9.4: Creating secursority and challenges databases ")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  secursority;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  challenges;")
+    cursor.execute("CREATE USER IF NOT EXISTS 'sql'@'localhost' IDENTIFIED BY 'sql';")
+    cursor.execute("GRANT ALL PRIVILEGES ON *.* TO 'sql'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    print("secursority & challenges fninshed")
+    # data mutillidae;
+    print("Step 9.5: Creating mutillidae  database")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
+    cursor.execute("CREATE USER IF NOT EXISTS 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
+    cursor.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
+    cursor.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
+    cursor.execute("use mysql;")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+
+    cursor.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
+    cursor.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+    cursor.execute("flush privileges;")
+    time.sleep(0.5)
+    print("mutillidae fninshed")
+    print("Every thing is going well...")
+    conn.close()
+    print("Hello")
 
 os.system("clear")
 f = open('banner.txt', 'r')
