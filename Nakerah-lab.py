@@ -86,7 +86,18 @@ os.system("sudo apt install libmariadb3 libmariadb-dev -y")
 os.system("sudo apt install mariadb-server -y")
 os.system("sudo service mariadb start")
 os.system("pip3 install mariadb")
+###########mutillidae 
 
+os.system("sudo apt update")
+os.system("sudo apt install php-xml php-fpm libapache2-mod-php php-mysql php-gd php-imap php-mysql php-curl php-mbstring -y")
+os.system("sudo a2enmod proxy_fcgi setenvif")
+os.system("sudo systemctl restart apache2")
+os.system("sudo a2enconf php7.4-fpm")
+os.system("sudo systemctl reload apache2")
+os.system("sudo systemctl restart apache2.service")
+os.system("sudo service php7.4-fpm restart")
+os.system("sudo systemctl restart mysql")
+######################
 os.system("sudo apt-get install python-mysqldb -y")
 os.system("pip3 install mysql-connector-python -y")
 os.system("pip install pymysql -y")
@@ -143,7 +154,10 @@ os.system("sudo unzip hackademic.zip")
 time.sleep(0.5)
 os.system("sudo unzip dvwa.zip")
 time.sleep(0.5)
-os.system("sudo unzip mutillidae2.zip")
+os.system("sudo rm -r mutillidae2.zip")
+os.system("sudo rm -r mutillidae")
+
+os.system("sudo git clone https://github.com/webpwnized/mutillidae")
 time.sleep(0.5)
 os.system("sudo tar -xzvf xvwa.tar.gz")
 
@@ -206,25 +220,25 @@ try:
     cursor.execute("SHOW GRANTS FOR 'sql'@'localhost';")
     cursor.execute("flush privileges;")
     time.sleep(0.5)
-    print("10 secursority & challenges fninshed")
+    print("9.4 secursority & challenges fninshed")
     # data mutillidae;
     print("Step 9.5: Creating mutillidae  database")
-    cursor.execute("CREATE DATABASE IF NOT EXISTS  mutillidae;")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS mutillidae;")
     cursor.execute("CREATE USER IF NOT EXISTS 'mutillidae'@'localhost' IDENTIFIED BY 'mutillidae';")
     cursor.execute("GRANT ALL PRIVILEGES ON mutillidae.* TO 'mutillidae'@'localhost';")
     cursor.execute("SHOW GRANTS FOR 'mutillidae'@'localhost';")
     cursor.execute("use mysql;")
     cursor.execute("flush privileges;")
+    print("mutillidae part 1")
     time.sleep(0.5)
-
-    cursor.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
-    cursor.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
+    cursor.execute("ALTER USER 'root'@'localhost' IDENTIFIED BY 'mutillidae';")
+    cursor.execute("SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mutillidae');")
     cursor.execute("flush privileges;")
     time.sleep(0.5)
-    print("mutillidae fninshed")
+    print("mutillidae part 2")
+
     print("Every thing is going well...")
     conn.close()
-    print("Hello")
 
 except:
     import MySQLdb
@@ -281,10 +295,12 @@ except:
         cur.execute("flush privileges;")
         print("mutillidae part 1")
         time.sleep(0.5)
+        
         cur.execute("update user set authentication_string=PASSWORD('mutillidae') where user='mutillidae';")
         cur.execute("update user set plugin='mysql_native_password' where user='mutillidae';")
         cur.execute("flush privileges;")
         time.sleep(0.5)
+
         print("mutillidae part 2")
         for firstname, lastname in cur.fetchall():
             print(firstname, lastname)
@@ -344,7 +360,8 @@ while x != 0:
                 op_list()
             elif x == 4:
                 print("Wait for install { mutillidae }")
-                os.system("sudo cp -r mutillidae /var/www/html/")
+                os.system("sudo cp -r mutillidae /var/www/html/ ;sudo chown -R www-data:www-data /var/www/html/mutillidae/")
+
                 time.sleep(0.5)
                 op_list()
             elif x == 5:
@@ -373,7 +390,7 @@ while x != 0:
                 os.system("sudo chmod -R 777 /var/www/html/dvwa/hackable/uploads")
                 os.system("sudo chmod -R 777 /var/www/html/dvwa/config")
                 time.sleep(0.5)
-                os.system("sudo cp -r mutillidae /var/www/html/")
+                os.system("sudo cp -r mutillidae /var/www/html/ ;sudo chown -R www-data:www-data /var/www/html/mutillidae/")
                 os.system("sudo cp -r hackademic /var/www/html/")
                 os.system("sudo cp -r sqli-labs /var/www/html/")
                 time.sleep(0.5)
