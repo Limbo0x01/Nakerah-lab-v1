@@ -32,7 +32,7 @@ And this After install :
 
 You can download Ubuntu server 2018 64 and it's the best one :
 
-[Download Ubuntu Server 64](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)
+[Download Ubuntu Server 64](https://old-releases.ubuntu.com/releases/18.04.5/ubuntu-18.04.5-live-server-amd64.iso)
 
 Please note that PHP version 7.2 is require .
 
