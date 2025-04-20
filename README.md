@@ -24,12 +24,18 @@ Now this is what is Nakerah-lab V1 include .
 10. WackoPicko
 11. Damn Vulnerable NodeJS Application
 
+
+
+or: 
 And this After install :
 
 ![alt text](https://github.com/0xL1mb0/Nakerah-lab-v1/blob/master/imgs/2.png "Pic 1")
 
 ## Installation
+you can just download the whole thing from here: 
+https://drive.google.com/file/d/1-dH0_DeRzveXD53psfR5_WCpoWg1NkM-/view?usp=sharing
 
+or:
 You can download Ubuntu server 2018 64 and it's the best one :
 
 [Download Ubuntu Server 64](https://old-releases.ubuntu.com/releases/18.04.5/ubuntu-18.04.5-live-server-amd64.iso)
