@@ -34,7 +34,10 @@ And this After install :
 ## Installation
 you can just download the whole thing from here: 
 https://drive.google.com/file/d/1-dH0_DeRzveXD53psfR5_WCpoWg1NkM-/view?usp=sharing
+user: limbo
+pass: limbo
 
+and the ip u can get it from : ifconfig
 or:
 You can download Ubuntu server 2018 64 and it's the best one :
 
